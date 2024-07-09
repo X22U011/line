@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@line/bot-sdk": "^9.2.2",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "obniz": "^3.31.0"
   },
   "description": ""
 }
