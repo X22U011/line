@@ -1,5 +1,9 @@
 'use strict';
 
+// 以下の2行のコードを追加
+const Obniz = require('obniz'); 
+const obniz = new Obniz('2644-2620');  //自分のobnizIDに書き換える
+
 const express = require('express');
 const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 3000;
@@ -31,14 +35,16 @@ const client = new line.Client(config);
 
 async function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
-    return Promise.resolve(null);
+      return Promise.resolve(null);
   }
-
+  
+  obniz.display.clear(); //この行を追加
+  obniz.display.print(`${event.message.text} \n`); //この行を追加
+  
   return client.replyMessage(event.replyToken, {
-    type: 'text',
-    text: event.message.text + 'ゴリ'  //実際に返信の言葉を入れる箇所
+      type: 'text',
+      text: event.message.text+"!" //実際に返信の言葉を入れる箇所
   });
-}
-
+  }
 app.listen(PORT);
 console.log(`Server running at ${PORT}`);
